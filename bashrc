@@ -4,6 +4,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias yumall='yum list available --showduplicates'
 alias tarunzip='tar -xvzf'
 alias tarzip='tar -zcvf'
 
