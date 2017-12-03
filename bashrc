@@ -7,6 +7,8 @@ alias mv='mv -i'
 alias tarunzip='tar -xvzf'
 alias tarzip='tar -zcvf'
 
+alias yumall='yum list available --showduplicates'
+
 docker() {
     if [[ $1 == "in" ]]; then
         shift
