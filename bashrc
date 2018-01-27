@@ -4,6 +4,8 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias vmi='vim'
+
 alias tarunzip='tar -xvzf'
 alias tarzip='tar -zcvf'
 
@@ -19,9 +21,6 @@ docker() {
     elif [[ $1 == "rme" ]]; then
         exited=`docker ps -a | grep Exit | cut -d ' ' -f 1`
         command docker rm $exited
-    elif [[ $1 == "stdlogs" ]]; then
-        shift
-        command docker attach --no-stdin --sig-proxy=false $@
     elif [[ $1 == "tail" ]]; then
         shift
         command docker logs -f $@
@@ -42,6 +41,12 @@ tmux() {
         command tmux $@
     fi
 }
+
+# SSH agent
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval `ssh-agent -s`
+    ssh-add
+fi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
