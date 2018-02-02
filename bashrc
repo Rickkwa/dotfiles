@@ -46,12 +46,12 @@ tmux() {
 ssh-reagent () {
     for agent in /tmp/ssh-*/agent.*; do
         export SSH_AUTH_SOCK=$agent
-        if ssh-add -l 2>&1 > /dev/null; then
-            echo Found working SSH Agent:
+        if ssh-add -l > /dev/null 2>&1; then
+            echo "Found working SSH Agent:"
             ssh-add -l
             return
         else
-            rm -f $agent
+            rm -f "$agent"
         fi
     done
     echo "Cannot find ssh agent - creating new one"
@@ -60,7 +60,7 @@ ssh-reagent () {
 }
 
 ssh() {
-    if ! ssh-add -l 2>&1 > /dev/null; then
+    if ! ssh-add -l > /dev/null 2>&1; then
         ssh-reagent
     fi
     command ssh $@
