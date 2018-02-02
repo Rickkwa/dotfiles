@@ -50,13 +50,21 @@ ssh-reagent () {
             echo Found working SSH Agent:
             ssh-add -l
             return
+        else
+            rm -f $agent
         fi
     done
     echo "Cannot find ssh agent - creating new one"
     eval `ssh-agent -s`
     ssh-add
 }
-ssh-reagent
+
+ssh() {
+    if ! ssh-add -l 2>&1 > /dev/null; then
+        ssh-reagent
+    fi
+    command ssh $@
+}
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
