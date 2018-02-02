@@ -43,11 +43,20 @@ tmux() {
 }
 
 # SSH agent
-if [ -z "$SSH_AUTH_SOCK" ]; then
+ssh-reagent () {
+    for agent in /tmp/ssh-*/agent.*; do
+        export SSH_AUTH_SOCK=$agent
+        if ssh-add -l 2>&1 > /dev/null; then
+            echo Found working SSH Agent:
+            ssh-add -l
+            return
+        fi
+    done
+    echo "Cannot find ssh agent - creating new one"
     eval `ssh-agent -s`
     ssh-add
-    trap 'test -n "$SSH_AGENT_PID" && eval `/usr/bin/ssh-agent -k`' 0
-fi
+}
+ssh-reagent
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
