@@ -56,7 +56,7 @@ ssh-reagent () {
     done
     echo "Cannot find ssh agent - creating new one"
     eval `ssh-agent -s`
-    ssh-add
+    ssh-add -t 12h
 }
 
 ssh() {
