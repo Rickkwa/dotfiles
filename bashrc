@@ -47,16 +47,15 @@ ssh-reagent () {
     for agent in /tmp/ssh-*/agent.*; do
         export SSH_AUTH_SOCK=$agent
         if ssh-add -l > /dev/null 2>&1; then
-            echo "Found working SSH Agent:"
             ssh-add -l
             return
         else
             rm -f "$agent"
         fi
     done
-    echo "Cannot find ssh agent - creating new one"
     eval `ssh-agent -s`
     ssh-add -t 12h
+    if [ $? -ne 0 ]; then ssh-agent -k; fi
 }
 
 ssh() {
