@@ -43,7 +43,7 @@ tmux() {
 }
 
 # SSH agent
-ssh-reagent () {
+load-ssh-agent () {
     for agent in /tmp/ssh-*/agent.*; do
         export SSH_AUTH_SOCK=$agent
         if ssh-add -l > /dev/null 2>&1; then
@@ -60,7 +60,7 @@ ssh-reagent () {
 
 ssh() {
     if ! ssh-add -l > /dev/null 2>&1; then
-        ssh-reagent
+        load-ssh-agent
     fi
     command ssh $@
 }
