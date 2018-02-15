@@ -10,5 +10,6 @@
 { "keys": ["ctrl+shift+q"], "command": "toggle_comment", "args": {"block": true} },
 
 { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
+{ "keys" : ["f5"], "command": "refresh_folder_list"},
 
 ]
