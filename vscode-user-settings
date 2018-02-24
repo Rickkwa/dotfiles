@@ -22,11 +22,12 @@
         "*/node_modules": true,
     },
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true,
+    // "files.trimTrailingWhitespace": true,
 
     "search.useIgnoreFiles": false,
 
     "git.path": "D:/Programs/Git/bin/git.exe",
+    "git.autofetch": true,
 
     // https://www.fesevur.com/2017/11/cygwin-terminal-in-vscode.html
     "terminal.integrated.shell.windows": "D:\\cygwin64\\bin\\bash.exe",
@@ -47,9 +48,10 @@
     // https://marketplace.visualstudio.com/items?itemName=sadesyllas.vscode-workspace-switcher
     "vscodeWorkspaceSwitcher.paths": ["C:\\Users\\Rickkwa\\Documents\\vs_code_workspace"],
     "vscodeWorkspaceSwitcher.codeExecutable": "D:\\Programs\\Microsoft VS Code\\bin\\code",
-    "git.autofetch": true,
 
     // Trailing spaces extension
     // https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
-    "trailing-spaces.highlightCurrentLine": false
+    "trailing-spaces.highlightCurrentLine": false,
+
+
 }
