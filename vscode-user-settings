@@ -1,0 +1,47 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.wordWrap": "on",
+    "editor.autoClosingBrackets": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.emptySelectionClipboard": false,
+    "editor.minimap.enabled": true,
+    "editor.minimap.maxColumn": 60,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.occurrencesHighlight": false,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [120],
+    "editor.scrollBeyondLastLine": false,
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "*/node_modules": true,
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+
+    "search.useIgnoreFiles": false,
+
+    "git.path": "D:/Programs/Git/bin/git.exe",
+
+    // https://www.fesevur.com/2017/11/cygwin-terminal-in-vscode.html
+    "terminal.integrated.shell.windows": "D:\\cygwin64\\bin\\bash.exe",
+    "terminal.integrated.env.windows": { "CHERE_INVOKING": "1" },
+    "terminal.integrated.shellArgs.windows": [
+        "--login"
+    ],
+
+    "workbench.colorTheme": "Monokai",
+    "workbench.editor.tabCloseButton": "off",
+    "workbench.list.openMode": "doubleClick",
+    "workbench.colorCustomizations": {
+        //"editor.selectionBackground": "#00bde7",
+        "editor.selectionHighlightBackground": "#135564"
+    },
+
+
+}
