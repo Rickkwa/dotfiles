@@ -37,7 +37,7 @@
 
     "workbench.colorTheme": "Monokai",
     "workbench.editor.tabCloseButton": "off",
-    "workbench.list.openMode": "doubleClick",
+    // "workbench.list.openMode": "doubleClick",
     "workbench.colorCustomizations": {
         //"editor.selectionBackground": "#00bde7",
         "editor.selectionHighlightBackground": "#135564"
@@ -47,4 +47,9 @@
     // https://marketplace.visualstudio.com/items?itemName=sadesyllas.vscode-workspace-switcher
     "vscodeWorkspaceSwitcher.paths": ["C:\\Users\\Rickkwa\\Documents\\vs_code_workspace"],
     "vscodeWorkspaceSwitcher.codeExecutable": "D:\\Programs\\Microsoft VS Code\\bin\\code",
+    "git.autofetch": true,
+
+    // Trailing spaces extension
+    // https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
+    "trailing-spaces.highlightCurrentLine": false
 }
