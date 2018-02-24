@@ -10,7 +10,8 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.occurrencesHighlight": false,
     "editor.renderWhitespace": "all",
-    "editor.rulers": [120],
+    "editor.minimap.enabled": false,
+    // "editor.rulers": [120],
     "editor.scrollBeyondLastLine": false,
 
     "files.exclude": {
@@ -20,8 +21,10 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "*/node_modules": true,
+        "*/.pyc": true,
     },
     "files.insertFinalNewline": true,
+    "files.eol": "\n",
     // "files.trimTrailingWhitespace": true,
 
     "search.useIgnoreFiles": false,
