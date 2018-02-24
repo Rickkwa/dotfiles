@@ -43,6 +43,7 @@
         //"editor.selectionBackground": "#00bde7",
         "editor.selectionHighlightBackground": "#135564"
     },
+    "workbench.startupEditor": "newUntitledFile",
 
     // vs-code-workspace-switcher extension
     // https://marketplace.visualstudio.com/items?itemName=sadesyllas.vscode-workspace-switcher
@@ -52,6 +53,5 @@
     // Trailing spaces extension
     // https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
     "trailing-spaces.highlightCurrentLine": false,
-
 
 }
