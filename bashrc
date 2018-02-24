@@ -65,6 +65,11 @@ ssh() {
     command ssh $@
 }
 
+
+# For cygwin
+export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\W\[\e[0m\] \$ '
+
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
