@@ -25,6 +25,7 @@
     },
     "files.insertFinalNewline": true,
     "files.eol": "\n",
+    "files.hotExit": "onExitAndWindowClose",
     // "files.trimTrailingWhitespace": true,
 
     "search.useIgnoreFiles": false,
@@ -48,6 +49,7 @@
     },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.statusBar.feedback.visible": false,
 
     // vs-code-workspace-switcher extension
     // https://marketplace.visualstudio.com/items?itemName=sadesyllas.vscode-workspace-switcher
@@ -58,5 +60,5 @@
     // https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces
     "trailing-spaces.highlightCurrentLine": false,
 
-
+    "python.linting.enabled": false,
 }
