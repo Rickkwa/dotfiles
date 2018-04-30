@@ -422,3 +422,5 @@ endfunction
 set paste
 set mouse=
 set ttymouse=
+set splitbelow
+set splitright
