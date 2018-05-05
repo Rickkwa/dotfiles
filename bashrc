@@ -11,6 +11,9 @@ alias tarzip='tar -zcvf'
 
 alias yumall='yum list available --showduplicates'
 
+# Disable CTRL+S terminal pause
+stty -ixon
+
 docker() {
     if [[ $1 == "in" ]]; then
         shift
@@ -26,8 +29,8 @@ docker() {
         command docker logs -f $@
     elif [[ $1 == "down" ]]; then
         shift
-        command docker stop $1
-        command docker rm $1
+        command docker stop $@
+        command docker rm $@
     else
         command docker $@
     fi
@@ -65,15 +68,11 @@ ssh() {
     command ssh $@
 }
 
-
-# For cygwin
-#export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\W\[\e[0m\] \$ '
 export PS1='\[\033[1;34m\][\A][\u@\h \W]\$\[\033[0m\] '
-TERM=cygwin
-export TERM
+export TERM=cygwin
+FIGNORE=".pyc:.retry"
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
-
