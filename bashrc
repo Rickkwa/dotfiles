@@ -67,7 +67,8 @@ ssh() {
 
 
 # For cygwin
-export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\W\[\e[0m\] \$ '
+#export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\W\[\e[0m\] \$ '
+export PS1='\[\033[1;34m\][\A][\u@\h \W]\$\[\033[0m\] '
 TERM=cygwin
 export TERM
 
