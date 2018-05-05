@@ -424,3 +424,4 @@ set mouse=
 set ttymouse=
 set splitbelow
 set splitright
+set term=xterm-256color
