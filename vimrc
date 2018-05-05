@@ -75,8 +75,8 @@ set formatoptions-=r
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+" Set N lines to the cursor - when moving vertically using j/k
+set so=3
 
 " Turn on the WiLd menu
 set wildmenu
@@ -93,7 +93,7 @@ endif
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -112,7 +112,7 @@ set smartcase
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch
+"set incsearch
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -141,10 +141,10 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 
-try
-    colorscheme murphy
-catch
-endtry
+"try
+"    colorscheme murphy
+"catch
+"endtry
 
 set background=dark
 
@@ -167,9 +167,9 @@ set ffs=unix,dos,mac
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
+"set nobackup
+"set nowb
+"set noswapfile
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
