@@ -39,6 +39,7 @@
     "terminal.integrated.shellArgs.windows": [
         "--login"
     ],
+    "terminal.integrated.copyOnSelection": true,
 
     "workbench.colorTheme": "Monokai",
     "workbench.editor.tabCloseButton": "off",
