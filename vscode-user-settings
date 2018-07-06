@@ -51,6 +51,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.statusBar.feedback.visible": false,
+    "workbench.editor.closeEmptyGroups": false,
 
     // vs-code-workspace-switcher extension
     // https://marketplace.visualstudio.com/items?itemName=sadesyllas.vscode-workspace-switcher
