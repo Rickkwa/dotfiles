@@ -53,6 +53,8 @@
     "workbench.statusBar.feedback.visible": false,
     "workbench.editor.closeEmptyGroups": false,
 
+    "window.title": "${activeEditorLong}${separator}${rootName}",
+
     // vs-code-workspace-switcher extension
     // https://marketplace.visualstudio.com/items?itemName=sadesyllas.vscode-workspace-switcher
     "vscodeWorkspaceSwitcher.paths": ["C:\\Users\\Rickkwa\\Documents\\vs_code_workspace"],
