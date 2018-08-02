@@ -41,6 +41,26 @@
     ],
     "terminal.integrated.copyOnSelection": true,
 
+    // shell launcher extension
+    // https://marketplace.visualstudio.com/items?itemName=Tyriar.shell-launcher
+    "shellLauncher.shells.windows": [
+        {
+            "shell": "D:\\cygwin64\\bin\\bash.exe",
+            "label": "Cygwin",
+            "args": [
+                "--login"
+            ]
+        },
+        {
+            "shell": "C:\\Users\\Rickkwa\\AppData\\Local\\wsltty\\bin\\wslbridge.exe",
+            "label": "Windows Subsystem",
+            "args": [
+                "-C",
+                "~"
+            ]
+        }
+    ],
+
     "workbench.colorTheme": "Monokai",
     "workbench.editor.tabCloseButton": "off",
     // "workbench.list.openMode": "doubleClick",
