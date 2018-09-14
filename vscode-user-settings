@@ -2,6 +2,7 @@
 {
     "editor.wordWrap": "on",
     "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.emptySelectionClipboard": false,
