@@ -46,19 +46,13 @@ tmux() {
 }
 
 # SSH agent
-load-ssh-agent () {
-    for agent in /tmp/ssh-*/agent.*; do
-        export SSH_AUTH_SOCK=$agent
-        if ssh-add -l > /dev/null 2>&1; then
-            ssh-add -l
-            return
-        else
-            rm -f "$agent"
-        fi
-    done
-    eval `ssh-agent -s`
-    ssh-add -t 12h
-    if [ $? -ne 0 ]; then ssh-agent -k; fi
+load-ssh-agent() {
+    if ! $(ps aux | grep '/usr/bin/ssh-agent' > /dev/null); then
+        ssh-agent -s > ~/.ssh-agent.sh;
+        ssh-add -t 10h ~/.ssh/prod_id_rsa
+        if [ $? -ne 0 ]; then ssh-agent -k; fi
+    fi
+    source ~/.ssh-agent.sh
 }
 
 ssh() {
