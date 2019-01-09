@@ -47,12 +47,21 @@ tmux() {
 
 # SSH agent
 load-ssh-agent() {
-    if ! $(ps aux | grep '/usr/bin/ssh-agent' > /dev/null); then
-        ssh-agent -s > ~/.ssh-agent.sh;
-        ssh-add -t 10h ~/.ssh/prod_id_rsa
-        if [ $? -ne 0 ]; then ssh-agent -k; fi
+    if $(ps aux | grep '/usr/bin/ssh-agent' > /dev/null); then
+        source ~/.ssh-agent.sh
+
+        if ! ssh-add -l > /dev/null 2>&1; then
+            ssh-agent -k > /dev/null
+            rm -f ~/.ssh-agent.sh
+        else
+            return
+        fi
     fi
+
+    ssh-agent -s > ~/.ssh-agent.sh;
     source ~/.ssh-agent.sh
+    ssh-add -t 10h ~/.ssh/prod_id_rsa
+    if [ $? -ne 0 ]; then ssh-agent -k; fi
 }
 
 ssh() {
