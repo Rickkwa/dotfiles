@@ -48,7 +48,7 @@ tmux() {
 # SSH agent
 load-ssh-agent() {
     if $(ps aux | grep '/usr/bin/ssh-agent' > /dev/null); then
-        source ~/.ssh-agent.sh
+        source ~/.ssh-agent.sh > /dev/null
 
         if ! ssh-add -l > /dev/null 2>&1; then
             ssh-agent -k > /dev/null
