@@ -68,6 +68,47 @@ ssh() {
     command ssh $@
 }
 
+ctmux {
+    CONF=~/.commandMux.conf
+    CMDS=$1
+    if [ -z $CMDS ]; then
+        cat /dev/null > $CONF
+    elif [ ! -f $CMDS ]; then
+        echo "Not a file: $CMDS"
+        return
+    else
+        # get number of panes we will need to create
+        PANES=`wc -l $CMDS | awk '{print $1}'`
+
+        if [ $PANES -lt 1 ]; then
+            cat /dev/null > $CONF
+        else
+            i=1 # manually count since last line treated differently
+            echo "selectp -t 0" > $CONF
+
+            while read line
+            do
+                echo "send-keys '$line' enter" >> $CONF
+                MOD=`echo "$i % 4" | bc`
+                if [ $MOD -eq 0 ]; then
+                    echo "select-layout tiled" >> $CONF
+                fi
+                # only add panes if we aren't at the last one
+                # new pane gets focus for next send-keys call
+                if [ $i -lt $PANES ]; then
+                    echo "splitw -h -p 50" >> $CONF # Add a new pane
+                fi
+                i=$(( i + 1 ))
+            done < $CMDS
+            # Adjust the layout to homogeneize the panes
+            echo "select-layout tiled" >> $CONF
+            # Come back to the original pane
+            echo "selectp -t 0" >> $CONF
+        fi
+    fi
+    /usr/bin/tmux;
+}
+
 export PS1='\[\033[1;34m\][\A][\u@\h \W]\$\[\033[0m\] '
 export TERM=cygwin
 FIGNORE=".pyc:.retry"
