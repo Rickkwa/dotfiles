@@ -11,5 +11,6 @@
 
 { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
 { "keys" : ["f5"], "command": "refresh_folder_list"},
+{ "keys": ["ctrl+shift+l"], "command": "find_all_under" },
 
 ]
