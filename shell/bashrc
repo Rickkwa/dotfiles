@@ -93,7 +93,23 @@ extract () {
     fi
 }
 
-export PS1='\[\033[1;34m\][\A][\u@\h \W]\$\[\033[0m\] '
+#export PS1='\[\033[1;34m\][\A][\u@\h \W]\$\[\033[0m\] '
+PROMPT_COMMAND=__prompt_command
+__prompt_command() {
+    local EXIT_CODE="$?"  # Has to be first line to capture exit code
+    local CLR_NORMAL="\[\033[0m\]"
+    local CLR_WHITE="\[\033[37;1m\]"
+    local CLR_RED="\[\033[31;1m\]"
+    local CLR_BLUE="\[\033[1;34m\]"
+    local CLR_YELLOW="\[\033[33;1m\]"
+
+    local EXIT="${CLR_BLUE}`if [ $EXIT_CODE -ne 0 ]; then echo $CLR_RED; fi`::"
+    local UID_INDICATOR="${CLR_WHITE}\$"
+    local TIMESTAMP="${CLR_YELLOW}[\A]"
+    local MAIN="${CLR_YELLOW} \h \W "
+    export PS1="${TIMESTAMP}${MAIN}${EXIT}${UID_INDICATOR}${CLR_NORMAL} "
+}
+
 export TERM=cygwin
 FIGNORE=".pyc:.retry"
 
