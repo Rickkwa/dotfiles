@@ -424,3 +424,7 @@ set ttymouse=
 set splitbelow
 set splitright
 set term=xterm-256color
+
+# Highlight trailing whitespace https://stackoverflow.com/a/4617156/2079781
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
