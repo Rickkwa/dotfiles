@@ -71,6 +71,46 @@ ssh() {
     command ssh $@
 }
 
+function pssh {
+    if [ $# -eq 0 ]; then
+        echo "Expecting one or more hosts" >&2
+        exit 1
+    else
+        # get number of panes we will need to create
+        PANES=$#
+
+        i=1 # manually count since last line treated differently
+        CONF=~/.pssh.tmp.conf
+        cat /dev/null > $CONF
+
+        SESSION_NAME=$(date '+%Y%m%d_%H%M%S')
+        echo -n "tmux new-session -s '$SESSION_NAME' \; " >> $CONF
+        echo -n "selectp -t 0 \; " >> $CONF
+
+        for TARGET in "$@"; do
+            echo "send-keys 'ssh $TARGET' enter" >> $CONF
+            # echo -n "send-keys 'echo $TARGET' enter \; " >> $CONF
+            # TODO custom user, or ssh options
+
+            if [ $(($i % 4)) -eq 0 ]; then
+                echo -n "select-layout tiled \; " >> $CONF
+            fi
+            # only add panes if we aren't at the last one
+            # new pane gets focus for next send-keys call
+            if [ $i -lt $PANES ]; then
+                echo -n "splitw -h -p 50 \; " >> $CONF # Add a new pane
+            fi
+            i=$(( i + 1 ))
+        done
+        # Adjust the layout to homogeneize the panes
+        echo -n "select-layout tiled \; " >> $CONF
+        # Come back to the original pane
+        echo -n "selectp -t 0 \; " >> $CONF
+        echo -n "attach" >> $CONF
+    fi
+    eval "$(cat $CONF)";
+}
+
 # https://serverfault.com/a/3842/399488
 extract () {
     if [ -f $1 ] ; then
