@@ -78,7 +78,11 @@ function pssh {
     else
         NUM_PANES=$#
         SESSION_NAME=$(date '+%Y%m%d_%H%M%S')
-        TMUX_COMMAND="tmux new-session -s '$SESSION_NAME' \; "
+        if [ -z "$TMUX" ]; then
+            TMUX_COMMAND="tmux new-session -s '$SESSION_NAME' \; "
+        else
+            TMUX_COMMAND="tmux new-window \; "
+        fi
         TMUX_COMMAND=${TMUX_COMMAND}"selectp -t 0 \; "
 
         i=1
@@ -101,7 +105,9 @@ function pssh {
         TMUX_COMMAND=${TMUX_COMMAND}"select-layout tiled \; "
         # Come back to the original pane
         TMUX_COMMAND=${TMUX_COMMAND}"selectp -t 0 \; "
-        TMUX_COMMAND=${TMUX_COMMAND}"attach"
+        if [ -z "$TMUX" ]; then
+            TMUX_COMMAND=${TMUX_COMMAND}"attach"
+        fi
     fi
     eval "$TMUX_COMMAND";
 }
