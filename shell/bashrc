@@ -71,6 +71,45 @@ ssh() {
     command ssh $@
 }
 
+function pssh {
+    if [ $# -eq 0 ]; then
+        echo "SSH into one or more hosts in separate tmux panes at once." >&2
+        echo "Usage: pssh SERVER..." >&2
+        exit 1
+    fi
+    NUM_PANES=$#
+    if [ -z "$TMUX" ]; then
+        TMUX_COMMAND="tmux new-session \; "
+    else
+        TMUX_COMMAND="tmux new-window \; "
+    fi
+    TMUX_COMMAND=${TMUX_COMMAND}"selectp -t 0 \; "
+
+    i=1
+    for TARGET in "$@"; do
+        TMUX_COMMAND=${TMUX_COMMAND}"send-keys 'ssh $TARGET' enter \; "
+        # TODO custom user, or ssh options
+
+        if [ $(($i % 4)) -eq 0 ]; then
+            TMUX_COMMAND=${TMUX_COMMAND}"select-layout tiled \; "
+        fi
+        # only add panes if we aren't at the last one
+        # new pane gets focus for next send-keys call
+        if [ $i -lt $NUM_PANES ]; then
+            TMUX_COMMAND=${TMUX_COMMAND}"splitw -h -p 50 \; " # Add a new pane
+        fi
+        i=$(( i + 1 ))
+    done
+    # Adjust the layout to homogeneize the panes
+    TMUX_COMMAND=${TMUX_COMMAND}"select-layout tiled \; "
+    # Come back to the original pane
+    TMUX_COMMAND=${TMUX_COMMAND}"selectp -t 0 \; "
+    if [ -z "$TMUX" ]; then
+        TMUX_COMMAND=${TMUX_COMMAND}"attach"
+    fi
+    eval "$TMUX_COMMAND";
+}
+
 # https://serverfault.com/a/3842/399488
 extract () {
     if [ -f $1 ] ; then
