@@ -75,7 +75,7 @@ function pssh {
     if [ $# -eq 0 ]; then
         echo "SSH into one or more hosts in separate tmux panes at once." >&2
         echo "Usage: pssh SERVER..." >&2
-        exit 1
+        return 1
     fi
     NUM_PANES=$#
     if [ -z "$TMUX" ]; then
