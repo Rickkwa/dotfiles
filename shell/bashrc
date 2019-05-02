@@ -73,7 +73,8 @@ ssh() {
 
 function pssh {
     if [ $# -eq 0 ]; then
-        echo "Expecting one or more hosts" >&2
+        echo "SSH into one or more hosts in separate tmux panes at once." >&2
+        echo "Usage: pssh SERVER..." >&2
         exit 1
     fi
     NUM_PANES=$#
@@ -87,7 +88,6 @@ function pssh {
     i=1
     for TARGET in "$@"; do
         TMUX_COMMAND=${TMUX_COMMAND}"send-keys 'ssh $TARGET' enter \; "
-        # TMUX_COMMAND=${TMUX_COMMAND}"send-keys 'echo $TARGET' enter \; "
         # TODO custom user, or ssh options
 
         if [ $(($i % 4)) -eq 0 ]; then
