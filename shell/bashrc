@@ -150,6 +150,7 @@ __prompt_command() {
 }
 
 export TERM=cygwin
+IGNOREEOF=1
 FIGNORE=".pyc:.retry"
 
 # Source global definitions
