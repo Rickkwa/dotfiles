@@ -150,6 +150,7 @@ __prompt_command() {
 }
 
 export TERM=cygwin
+export HISTTIMEFORMAT='%d/%m/%y %T '
 IGNOREEOF=1
 FIGNORE=".pyc:.retry"
 
