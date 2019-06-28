@@ -23,7 +23,7 @@
     {
         // vs-code-workspace-switcher extension
         "key": "ctrl+alt+p",
-        "command": "extension.switchWorkspace",
+        "command": "vscodeWorkspaceSwitcher.switchWorkspace",
     },
     {
         "key": "ctrl+l",
