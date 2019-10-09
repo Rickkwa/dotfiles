@@ -36,15 +36,6 @@ docker() {
     fi
 }
 
-tmux() {
-    if [[ $1 == "go" ]]; then
-        shift
-        command tmux a -t $@
-    else
-        command tmux $@
-    fi
-}
-
 # SSH agent
 load-ssh-agent() {
     if $(ps aux | grep '/usr/bin/ssh-agent' > /dev/null); then
@@ -78,36 +69,40 @@ function pssh {
         return 1
     fi
     NUM_PANES=$#
+    COMMANDS_FILE="/tmp/pssh-cmds-$(date +%s%N)"
     if [ -z "$TMUX" ]; then
-        TMUX_COMMAND="tmux new-session \; "
+        echo "tmux new-session -d" >> $COMMANDS_FILE
     else
-        TMUX_COMMAND="tmux new-window \; "
+        echo "Please run this outside of an existing tmux session" >&2
+        return 1
     fi
-    TMUX_COMMAND=${TMUX_COMMAND}"selectp -t 0 \; "
+    echo "tmux selectp -t 0" >> $COMMANDS_FILE
 
     i=1
     for TARGET in "$@"; do
-        TMUX_COMMAND=${TMUX_COMMAND}"send-keys 'ssh $TARGET' enter \; "
-        # TODO custom user, or ssh options
+        echo "tmux send-keys \"ssh '$TARGET'\" enter" >> $COMMANDS_FILE
 
         if [ $(($i % 4)) -eq 0 ]; then
-            TMUX_COMMAND=${TMUX_COMMAND}"select-layout tiled \; "
+            echo "tmux select-layout tiled" >> $COMMANDS_FILE
         fi
         # only add panes if we aren't at the last one
         # new pane gets focus for next send-keys call
         if [ $i -lt $NUM_PANES ]; then
-            TMUX_COMMAND=${TMUX_COMMAND}"splitw -h -p 50 \; " # Add a new pane
+            echo "tmux splitw -h -p 50" >> $COMMANDS_FILE # Add a new pane
         fi
         i=$(( i + 1 ))
     done
     # Adjust the layout to homogeneize the panes
-    TMUX_COMMAND=${TMUX_COMMAND}"select-layout tiled \; "
+    echo "tmux select-layout tiled" >> $COMMANDS_FILE
     # Come back to the original pane
-    TMUX_COMMAND=${TMUX_COMMAND}"selectp -t 0 \; "
+    echo "tmux selectp -t 0" >> $COMMANDS_FILE
+    echo "tmux set-window-option synchronize-panes" >> $COMMANDS_FILE
     if [ -z "$TMUX" ]; then
-        TMUX_COMMAND=${TMUX_COMMAND}"attach"
+        echo "tmux -2 attach-session -d" >> $COMMANDS_FILE
     fi
-    eval "$TMUX_COMMAND";
+    #echo $COMMANDS_FILE
+    #cat $COMMANDS_FILE
+    source "$COMMANDS_FILE" #&& rm -f "$COMMANDS_FILE"
 }
 
 # https://serverfault.com/a/3842/399488
