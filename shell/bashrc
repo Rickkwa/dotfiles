@@ -102,7 +102,7 @@ function pssh {
     fi
     #echo $COMMANDS_FILE
     #cat $COMMANDS_FILE
-    source "$COMMANDS_FILE" #&& rm -f "$COMMANDS_FILE"
+    source "$COMMANDS_FILE" && rm -f "$COMMANDS_FILE"
 }
 
 # https://serverfault.com/a/3842/399488
