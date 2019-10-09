@@ -68,14 +68,16 @@ function pssh {
         echo "Usage: pssh SERVER..." >&2
         return 1
     fi
-    NUM_PANES=$#
-    COMMANDS_FILE="/tmp/pssh-cmds-$(date +%s%N)"
-    if [ -z "$TMUX" ]; then
-        echo "tmux new-session -d" >> $COMMANDS_FILE
-    else
+
+    if [ ! -z "$TMUX" ]; then
         echo "Please run this outside of an existing tmux session" >&2
         return 1
     fi
+
+    NUM_PANES=$#
+    COMMANDS_FILE="/tmp/pssh-cmds-$(date +%s%N)"
+
+    echo "tmux new-session -d" >> $COMMANDS_FILE
     echo "tmux selectp -t 0" >> $COMMANDS_FILE
 
     i=1
@@ -102,8 +104,10 @@ function pssh {
     fi
     #echo $COMMANDS_FILE
     #cat $COMMANDS_FILE
-    source "$COMMANDS_FILE" && rm -f "$COMMANDS_FILE"
+    source "$COMMANDS_FILE"
+    rm -f "$COMMANDS_FILE"
 }
+
 
 # https://serverfault.com/a/3842/399488
 extract () {
