@@ -9,11 +9,13 @@
     "editor.emptySelectionClipboard": false,
     "editor.minimap.maxColumn": 60,
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.occurrencesHighlight": false,
+    "editor.occurrencesHighlight": "off",
     "editor.renderWhitespace": "all",
     "editor.minimap.enabled": false,
     // "editor.rulers": [120],
     "editor.scrollBeyondLastLine": false,
+
+    "html.autoCreateQuotes": false,
 
     "breadcrumbs.enabled": true,
 
